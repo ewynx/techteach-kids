@@ -7,13 +7,18 @@
             <img class="img-fluid" src="./assets/images/tech-teach-logo.png" style="width: 60px;">
             <div class="d-flex flex-column logo-text ml-3">
               <div>TechTeach</div>
-              <div><small>Latinoamérica</small></div>
+              <div><small>Aprende a programar y diviertete</small></div>
             </div>
           </b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" class="justify-content-end" is-nav>
             <b-navbar-nav>
               <b-nav-item href="#learn">Aprende</b-nav-item>
+              <b-nav-item-dropdown text="Los cursos">
+                <b-dropdown-item href="#">Programar</b-dropdown-item>
+                <b-dropdown-item href="#">Type</b-dropdown-item>
+                <b-dropdown-item href="#">Google Drive</b-dropdown-item>
+              </b-nav-item-dropdown>
               <b-nav-item href="#learn">Tutores</b-nav-item>
               <b-nav-item href="#learn">Conócenos</b-nav-item>
             </b-navbar-nav>
@@ -30,7 +35,7 @@
     </section>
     <main role="main">
       <section role="section">
-        <article class="question">
+        <article id="question">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-8 col-md-4 col-lg-3 px-5 mx-auto">
@@ -44,41 +49,15 @@
             </div>
           </div>
         </article>
-        <article class="menu-learning-option">
+        <article id="menu-learning-option">
           <div class="row flex-column flex-md-row justify-content-around">
             <div class="col-md-3 mx-auto text-center"><button class="programming-link">Programar</button></div>
             <div class="col-md-3 mx-auto text-center"><button class="typing-link">Type</button></div>
             <div class="col-md-3 mx-auto text-center"><button class="google-drive-link">Google Drive</button></div>
           </div>
         </article>
-        <article class="learning-options">
-          <div class="ul d-flex flex-wrap">
-            <div class="li col-md-3 mx-auto scratch-no-1">
-              <div class="card">
-                <div class="card-header">Fácil <img class="img-fluid course-logo" src="./assets/images/scratch/scratch.jpg"></div>
-                <div class="card-body">
-                  <div>
-                    <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')"><img class="img-fluid" src="./assets/images/scratch/como_comenzar.jpg"></b-button>
-                    <b-modal id="bv-modal-example" hide-footer>
-                      <template v-slot:modal-title>
-                        ¿Cómo comenzar?
-                      </template>
-                      <div class="d-block text-center">
-                        <div>
-                          <a href="https://scratch.mit.edu/projects/editor/?tutorial=getStarted" target="_blank"><img class="img-fluid" src="./assets/images/scratch/como_comenzar.jpg"></a>
-                        </div>
-                        <div>
-                          Lorem ipsum
-                        </div>
-                      </div>
-                        <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Close Me</b-button>
-                    </b-modal>
-                  </div>
-                </div>
-                <div class="card-footer text-center">¿Cómo comenzar?</div>
-              </div>
-            </div>
-          </div>
+        <article id="learning-options">
+          <Courses />
         </article>
       </section>
     </main>
@@ -93,14 +72,15 @@
 
 <script>
   import ChatBox from './components/ChatBox.vue'
+  import Courses from './components/courses.vue'
   export default {
     name: 'app',
     components: {
-      ChatBox
+      ChatBox,
+      Courses
     }
   }
 </script>
-
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Poppins:wght@400;700&display=swap');
 
@@ -140,7 +120,7 @@
   .sub-header {
     background-color: $blue;
   }
-  .question {
+  #question {
     background-color: $yellow;
     h1 {
       color: $blue;
@@ -149,7 +129,7 @@
       font-size: 2.6667em;
     }
   }
-  .menu-learning-option {
+  #menu-learning-option {
     background-color: $light;
     padding: 2rem 0;
     button {
@@ -163,6 +143,7 @@
         border-left: 100px solid transparent;
         border-right: 100px solid transparent;
         border-bottom: 150px solid $yellow;
+        line-height: 150px;
       }
       &.typing-link {
         background-color: $purple-light;
@@ -178,25 +159,6 @@
         width: 150px;
       }
     }
-  }
-  .learning-options {
-    background-color: $blue;
-    padding: 2rem 0;
-    .card {
-      .card-header {
-        .course-logo {
-          max-width: 40px;
-          float: right;
-        }
-      }
-      .card-body {
-        padding: 0;
-        button {
-          padding: 0;
-          border: none;
-        }
-      }
-    }
-  }
+  } 
 </style>
 
